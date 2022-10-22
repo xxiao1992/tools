@@ -3,6 +3,7 @@ import os
 
 
 filenames = [x for x in os.listdir() if 'pdf' in x.lower() and 'To_print' not in x]
+filenames = list(sorted(filenames))
 
 files = []
 outPdf = PdfFileWriter()
