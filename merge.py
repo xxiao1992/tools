@@ -1,4 +1,4 @@
-from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
+from PyPDF2 import PdfFileReader, PdfFileWriter
 import os
 
 
@@ -10,13 +10,13 @@ outPdf = PdfFileWriter()
 for filename in filenames:
     f = open(filename, 'rb')
     files.append(f)
-    file = PdfFileReader(f, strict = False)
+    file = PdfFileReader(f, strict=False)
     outPdf.appendPagesFromReader(file)
     n_page = file.numPages
     if n_page % 2 == 1:
         outPdf.addBlankPage()
 
-with open('To_print.pdf','wb') as outStream:
+with open('To_print.pdf', 'wb') as outStream:
     outPdf.write(outStream)
 
 for x in files:
