@@ -21,7 +21,11 @@ def main(filename):
     for ln, line in enumerate(lines := bill_pages.split("\n")):
         if re.match(r"\d{3}-\d{3}-\d{4}", line):
             number = line.strip()
-            name, amount = (x.strip() for x in lines[ln - 2].split("$"))
+            # deal with weird case that some device names won't show up
+            pages_back = 2
+            if number.startswith('347') and lines[ln - 1].startswith('Xuy'):
+                pages_back = 1
+            name, amount = (x.strip() for x in lines[ln - pages_back].split("$"))
             records.append((name, number, float(amount)))
 
     bill = pd.DataFrame(records, columns=["name", "number", "charge"])
