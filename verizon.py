@@ -8,12 +8,12 @@ from pypdf import PdfReader
 def main(filename):
     reader = PdfReader(filename)
     total = float(
-        reader.pages[0].extract_text().split("Thismonth'scharges $")[1].split("\n")[0]
+        reader.pages[0].extract_text().split("This month's charges $")[1].split("\n")[0]
     )
 
     bill_pages = ""
     for page in reader.pages[3:]:
-        if "Talkactivity" in (text := page.extract_text()):
+        if "Talk activity" in (text := page.extract_text()):
             break
         bill_pages += text + "\n"
 
