@@ -2,7 +2,7 @@ import os
 
 from pypdf import PdfReader, PdfWriter
 
-filenames = [x for x in os.listdir() if "pdf" in x.lower() and "To_print" not in x]
+filenames = [x for x in os.listdir() if ".pdf" in x.lower() and "To_print" not in x]
 filenames = list(sorted(filenames))
 
 files = []
